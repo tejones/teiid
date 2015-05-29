@@ -110,17 +110,23 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
         registerFunctionModifier(SourceSystemFunctions.DAYOFWEEK, new DayWeekQuarterFunctionModifier("D"));//$NON-NLS-1$ 
         registerFunctionModifier(SourceSystemFunctions.DAYOFYEAR, new DayWeekQuarterFunctionModifier("DDD"));//$NON-NLS-1$ 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         registerFunctionModifier(SourceSystemFunctions.LOCATE, new LocateFunctionModifier(getLanguageFactory(), "INSTR", true)); //$NON-NLS-1$
 >>>>>>> 51dbc54... teiid-3151: Initial commit of HANA translator.
+=======
+>>>>>>> f0612ee... teiid-3151: Removed Concat modifier and changed convert modifier test to translator test.
         registerFunctionModifier(SourceSystemFunctions.SUBSTRING, new AliasModifier("substr"));//$NON-NLS-1$ 
         registerFunctionModifier(SourceSystemFunctions.LEFT, new LeftOrRightFunctionModifier(getLanguageFactory()));
         registerFunctionModifier(SourceSystemFunctions.RIGHT, new LeftOrRightFunctionModifier(getLanguageFactory()));
         registerFunctionModifier(SourceSystemFunctions.CONCAT, new ConcatFunctionModifier(getLanguageFactory())); 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         registerFunctionModifier(SourceSystemFunctions.CONCAT2, new AliasModifier("||")); //$NON-NLS-1$
 >>>>>>> 51dbc54... teiid-3151: Initial commit of HANA translator.
+=======
+>>>>>>> f0612ee... teiid-3151: Removed Concat modifier and changed convert modifier test to translator test.
         registerFunctionModifier(SourceSystemFunctions.COT, new FunctionModifier() {
 			@Override
 			public List<?> translate(Function function) {
@@ -133,6 +139,7 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
 		//TYPE CONVERION MODIFIERS////////////////////////////////
 		//////////////////////////////////////////////////////////
         ConvertModifier convertModifier = new ConvertModifier();
+<<<<<<< HEAD
 <<<<<<< HEAD
         //TODO Add type mappings
     	//convertModifier.addTypeMapping(nativeType, targetType);
@@ -160,6 +167,15 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
     	convertModifier.addConvert(FunctionModifier.DATE, FunctionModifier.STRING, new ConvertModifier.FormatModifier("to_char", DATE_FORMAT)); //$NON-NLS-1$ 
     	convertModifier.addConvert(FunctionModifier.TIME, FunctionModifier.STRING, new ConvertModifier.FormatModifier("to_char", TIME_FORMAT)); //$NON-NLS-1$
 >>>>>>> 51dbc54... teiid-3151: Initial commit of HANA translator.
+=======
+        //TODO Add type mappings
+    	//convertModifier.addTypeMapping(nativeType, targetType);
+    	convertModifier.addTypeMapping("nvarchar(1)", FunctionModifier.CHAR); //$NON-NLS-1$
+    	convertModifier.addTypeMapping("date", FunctionModifier.DATE, FunctionModifier.TIME); //$NON-NLS-1$
+    	convertModifier.addTypeMapping("timestamp", FunctionModifier.TIMESTAMP); //$NON-NLS-1$
+    	convertModifier.addConvert(FunctionModifier.DATE, FunctionModifier.STRING, new ConvertModifier.FormatModifier("to_varchar", DATE_FORMAT)); //$NON-NLS-1$ 
+    	convertModifier.addConvert(FunctionModifier.TIME, FunctionModifier.STRING, new ConvertModifier.FormatModifier("to_varchar", TIME_FORMAT)); //$NON-NLS-1$
+>>>>>>> f0612ee... teiid-3151: Removed Concat modifier and changed convert modifier test to translator test.
     	convertModifier.addConvert(FunctionModifier.TIMESTAMP, FunctionModifier.STRING, new FunctionModifier() {
 			@Override
 			public List<?> translate(Function function) {
@@ -178,6 +194,7 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
     	convertModifier.addConvert(FunctionModifier.STRING, FunctionModifier.DATE, new ConvertModifier.FormatModifier("to_date", DATE_FORMAT)); //$NON-NLS-1$ 
     	convertModifier.addConvert(FunctionModifier.STRING, FunctionModifier.TIME, new ConvertModifier.FormatModifier("to_date", TIME_FORMAT)); //$NON-NLS-1$ 
     	convertModifier.addConvert(FunctionModifier.STRING, FunctionModifier.TIMESTAMP, new ConvertModifier.FormatModifier("to_timestamp", TIMESTAMP_FORMAT)); //$NON-NLS-1$ 
+<<<<<<< HEAD
 <<<<<<< HEAD
     	convertModifier.addTypeConversion(new ConvertModifier.FormatModifier("to_varchar"), FunctionModifier.STRING); //$NON-NLS-1$
     	convertModifier.setWideningNumericImplicit(true);
@@ -201,6 +218,11 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
     	convertModifier.setWideningNumericImplicit(true);
     	registerFunctionModifier(SourceSystemFunctions.CONVERT, convertModifier);//////////////////////////////////////////////////////////
 >>>>>>> 51dbc54... teiid-3151: Initial commit of HANA translator.
+=======
+    	convertModifier.addTypeConversion(new ConvertModifier.FormatModifier("to_varchar"), FunctionModifier.STRING); //$NON-NLS-1$
+    	convertModifier.setWideningNumericImplicit(true);
+    	registerFunctionModifier(SourceSystemFunctions.CONVERT, convertModifier);
+>>>>>>> f0612ee... teiid-3151: Removed Concat modifier and changed convert modifier test to translator test.
 		
 	}
 	
@@ -228,9 +250,13 @@ public class HanaExecutionFactory extends JDBCExecutionFactory {
 		supportedFunctions.add(SourceSystemFunctions.UCASE); //No Need of ALIAS as both ucase and upper work in HANA
 		supportedFunctions.add(SourceSystemFunctions.RTRIM);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 =======
 >>>>>>> 51dbc54... teiid-3151: Initial commit of HANA translator.
+=======
+		
+>>>>>>> f0612ee... teiid-3151: Removed Concat modifier and changed convert modifier test to translator test.
 		///////////////////////////////////////////////////////////
 		//NUMERIC FUNCTIONS////////////////////////////////////////
 		///////////////////////////////////////////////////////////
